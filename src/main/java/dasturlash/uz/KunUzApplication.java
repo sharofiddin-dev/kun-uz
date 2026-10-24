@@ -10,5 +10,6 @@ public class KunUzApplication {
 		SpringApplication.run(KunUzApplication.class, args);
 
 		////
+		///
 	}
 }
