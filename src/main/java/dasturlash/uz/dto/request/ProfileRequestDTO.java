@@ -1,5 +1,6 @@
 package dasturlash.uz.dto.request;
 
+import dasturlash.uz.enums.ProfileRole;
 import dasturlash.uz.enums.ProfileStatus;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
@@ -31,10 +32,4 @@ public class ProfileRequestDTO {
             message = "Password must contain uppercase, lowercase and digit"
     )
     private String password;
-
-    @NotNull(message = "Status is required")
-    private ProfileStatus status;
-
-    @NotNull(message = "Visible is required")
-    private Boolean visible;
 }

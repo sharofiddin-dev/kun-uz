@@ -40,7 +40,8 @@ public interface ProfileRepository extends JpaRepository<ProfileEntity, Integer>
     @Query("select p from ProfileEntity p where p.createdDate between :from and :to")
     List<ProfileEntity> findByCreatedDateBetween(
             @Param("from") LocalDateTime from,
-            @Param("to") LocalDateTime to);
+            @Param("to") LocalDateTime to
+    );
 
     //Paging by Role
     @Query("select p from ProfileEntity p where p.role = :role")

@@ -30,8 +30,6 @@ public class ProfileResponseDTO {
     private String surname;
     private String email;
     private String phone;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String password;
     private ProfileStatus status;
     private ProfileRole role;
     private Boolean visible;
