@@ -1,0 +1,94 @@
+### Create - birinchi profile
+POST http://localhost:8080/api/profile
+Content-Type: application/json
+
+{
+  "name": "Begzod",
+  "surname": "Axmadov",
+  "email": "begzod@mail.com",
+  "phone": "+998991876533",
+  "password": "Strong555"
+}
+
+### Create — ikkinchi profile
+POST http://localhost:8080/api/profile
+Content-Type: application/json
+
+{
+  "name": "Laylo",
+  "surname": "Karimova",
+  "email": "laylo@mail.com",
+  "phone": "+998935556677",
+  "password": "Laylo1234",
+  "status": "ACTIVE",
+  "role": "ROLE_USER",
+  "visible": true
+}
+
+### Get all profiles
+GET http://localhost:8080/api/profile
+
+### Get profile by id
+GET http://localhost:8080/api/profile/2
+
+### 2. Update profile (ADMIN) — role/status/visible ham yangilanadi
+### TZ 2 — PUT /api/profile/{id}
+PUT http://localhost:8080/api/profile/1
+Content-Type: application/json
+
+{
+  "name": "Sharofiddin",
+  "surname": "Makhamadjonov",
+  "email": "sharofiddin@mail.com",
+  "phone": "+998990198244",
+  "password": "Strong123",
+  "status": "ACTIVE",
+  "role": "ROLE_MODERATOR",
+  "visible": true
+}
+
+### 3. Update profile detail (ANY — o'z detallari)
+
+PUT http://localhost:8080/api/profile/1/detail
+Content-Type: application/json
+
+{
+  "name": "Alisher",
+  "surname": "Valiyev",
+  "email": "alisher@mail.com",
+  "phone": "+998901234567",
+  "password": "Strong123",
+  "status": "ACTIVE",
+  "role": "ROLE_USER",
+  "visible": true
+}
+
+### 4. Profile list (pagination)
+GET http://localhost:8080/api/profile/page?page=0&size=5
+
+### 4. Pagination by role
+GET http://localhost:8080/api/profile/page/by-role?role=ROLE_USER&page=0&size=10
+
+### 4. Pagination by status
+GET http://localhost:8080/api/profile/page/by-status?status=ACTIVE&page=0&size=10
+
+### 5. Delete profile by id (ADMIN)
+DELETE http://localhost:8080/api/profile/2
+
+### Search by name (IgnoreCase)
+GET http://localhost:8080/api/profile/search/by-name?name=Ali
+
+### Search by email (unique — bitta natija)
+GET http://localhost:8080/api/profile/search/by-email?email=ali@mail.com
+
+### Search by status
+GET http://localhost:8080/api/profile/search/by-status?status=ACTIVE
+
+### Search by role
+GET http://localhost:8080/api/profile/search/by-role?role=ROLE_USER
+
+### Search by visible
+GET http://localhost:8080/api/profile/search/by-visible?visible=true
+
+### Search between dates (createdDate)
+GET http://localhost:8080/api/profile/search/between-dates?from=2026-10-01T00:00:00&to=2026-10-31T23:59:59
