@@ -13,7 +13,11 @@ import java.util.List;
 public interface ArticleTypeRepository extends JpaRepository<ArticleTypeEntity, Integer>{
     //FindByOrderName
     @Query("select a from ArticleTypeEntity a where a.orderNumber = :orderName")
-    ArticleTypeEntity findByOrderName(@Param("orderName") String orderName);
+    ArticleTypeEntity findByOrderName(@Param("orderName") Integer orderName);
+
+    List<ArticleTypeEntity> findAllByOrderByOrderNumberAsc();
+
+    List<ArticleTypeEntity> findByVisibleTrueOrderByOrderNumberAsc();
 
     //FindByVisible
     @Query("select a from ArticleTypeEntity a where a.visible = :visible")
@@ -25,5 +29,8 @@ public interface ArticleTypeRepository extends JpaRepository<ArticleTypeEntity, 
             @Param("from") LocalDateTime from,
             @Param("to") LocalDateTime to
     );
+
+    @Query("select a from ArticleTypeEntity a where a.nameUz = :nameUz")
+    List<ArticleTypeEntity> findByNameUz(@Param("nameUz") String nameUz);
 
 }

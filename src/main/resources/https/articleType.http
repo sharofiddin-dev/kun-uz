@@ -1,0 +1,29 @@
+### Create
+POST http://localhost:8080/api/article-type/create
+Content-Type: application/json
+
+{
+  "orderNumber": 2,
+  "nameUz": "Asosiy",
+  "nameRu": "Глваний",
+  "nameEn": "Main"
+}
+
+### Update
+PUT http://localhost:8080/api/article-type/update-by/id/2
+Content-Type: application/json
+
+{
+  "orderNumber": 2,
+  "nameUz": "Muharrir tanlovi",
+  "nameRu": "Выбор редакции",
+  "nameEn": "Editor's Choice"
+}
+
+### Get
+GET http://localhost:8080/api/article-type/get-by/2
+Content-Type: application/json
+
+### DELETE
+DELETE http://localhost:8080/api/article-type/delete-by/id/2
+Content-Type: application/json

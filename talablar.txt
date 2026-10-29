@@ -90,7 +90,7 @@
     5. Get By Lang (Language keladi shu language dagi name larini berib yuboramiz)
         (id,order_number,name) (name ga tegishli name_... dagi qiymat qo'yiladi.)
 
-6. Article∂
+6. Article
     1. CREATE (Moderator) status(NotPublished)
         (title,description,content,image_id, region_id,category_id, articleType(array))
     2. Update (Moderator (status to not publish)) (remove old image)

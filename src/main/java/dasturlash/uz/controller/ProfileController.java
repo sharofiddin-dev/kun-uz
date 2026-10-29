@@ -22,13 +22,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
 @RestController
 @RequestMapping("/api/profile")
 public class ProfileController {
 
     @Autowired
     private ProfileService service;
+
     @PostMapping
     public ResponseEntity<ProfileResponseDTO> create(@Valid @RequestBody ProfileRequestDTO dto) {
         return ResponseEntity.ok(service.create(dto));
@@ -54,7 +54,7 @@ public class ProfileController {
     // TZ: "Update Profile (ADMIN)"
     // role, status, visible ham yangilanadi
     // =====================================================
-    @PutMapping("/{id}")
+    @PutMapping("/get-by/id/{id}")
     public ResponseEntity<Boolean> updateById(@PathVariable Integer id,
                                               @Valid @RequestBody ProfileRequestDTO dto) {
         return ResponseEntity.ok(service.update(id, dto));

@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 @JsonPropertyOrder({
         "id",
         "name",
@@ -36,4 +37,5 @@ public class ProfileResponseDTO {
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime createdDate;
+    private UUID photoId;
 }

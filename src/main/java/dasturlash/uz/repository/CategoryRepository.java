@@ -25,4 +25,8 @@ public interface CategoryRepository  extends JpaRepository<CategoryEntity, Integ
             @Param("from") LocalDateTime from,
             @Param("to") LocalDateTime to
     );
+
+    List<CategoryEntity> findAllByOrderByOrderNumberAsc();
+
+    List<CategoryEntity> findByVisibleTrueOrderByOrderNumberAsc();
 }

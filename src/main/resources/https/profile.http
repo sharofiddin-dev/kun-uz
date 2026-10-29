@@ -29,7 +29,7 @@ Content-Type: application/json
 GET http://localhost:8080/api/profile
 
 ### Get profile by id
-GET http://localhost:8080/api/profile/2
+GET http://localhost:8080/api/profile/get-by/id/2
 
 ### 2. Update profile (ADMIN) — role/status/visible ham yangilanadi
 ### TZ 2 — PUT /api/profile/{id}

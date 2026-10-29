@@ -1,0 +1,26 @@
+INSERT INTO profile
+    (name, surname, email, phone, password, role, status, visible, created_date, photo_id)
+VALUES
+    ('Ali', 'Valiyev', 'ali.valiyev@mail.com', '+998901001001', 'AliStrong1', 'ROLE_USER', 'ACTIVE', TRUE, CURRENT_TIMESTAMP, '11111111-1111-1111-1111-111111111111'),
+    ('Vali', 'Aliyev', 'vali.aliyev@mail.com', '+998901001002', 'ValiStrong2', 'ROLE_USER', 'ACTIVE', TRUE, CURRENT_TIMESTAMP, '22222222-2222-2222-2222-222222222222'),
+    ('Dilshod', 'Karimov', 'dilshod.karimov@mail.com', '+998901001003', 'DilshodStrong3', 'ROLE_MODERATOR', 'ACTIVE', TRUE, CURRENT_TIMESTAMP, '33333333-3333-3333-3333-333333333333'),
+    ('Malika', 'Rahimova', 'malika.rahimova@mail.com', '+998901001004', 'MalikaStrong4', 'ROLE_USER', 'ACTIVE', TRUE, CURRENT_TIMESTAMP, '44444444-4444-4444-4444-444444444444'),
+    ('Javohir', 'Toshpulatov', 'javohir.toshpulatov@mail.com', '+998901001005', 'JavohirStrong5', 'ROLE_PUBLISHER', 'ACTIVE', TRUE, CURRENT_TIMESTAMP, '55555555-5555-5555-5555-555555555555'),
+    ('Aziza', 'Nazarova', 'aziza.nazarova@mail.com', '+998901001006', 'AzizaStrong6', 'ROLE_USER', 'NOT_ACTIVE', FALSE, CURRENT_TIMESTAMP, '66666666-6666-6666-6666-666666666666'),
+    ('Sardor', 'Usmonov', 'sardor.usmonov@mail.com', '+998901001007', 'SardorStrong7', 'ROLE_ADMIN', 'ACTIVE', TRUE, CURRENT_TIMESTAMP, '77777777-7777-7777-7777-777777777777'),
+    ('Madina', 'Ergasheva', 'madina.ergasheva@mail.com', '+998901001008', 'MadinaStrong8', 'ROLE_MODERATOR', 'ACTIVE', TRUE, CURRENT_TIMESTAMP, '88888888-8888-8888-8888-888888888888'),
+    ('Bekzod', 'Hamroyev', 'bekzod.hamroyev@mail.com', '+998901001009', 'BekzodStrong9', 'ROLE_PUBLISHER', 'ACTIVE', TRUE, CURRENT_TIMESTAMP, '99999999-9999-9999-9999-999999999999'),
+    ('Ziyoda', 'Qodirova', 'ziyoda.qodirova@mail.com', '+998901001010', 'ZiyodaStrong10', 'ROLE_USER', 'NOT_ACTIVE', FALSE, CURRENT_TIMESTAMP, NULL);
+
+INSERT INTO article_type
+    (order_number, name_uz, name_ru, name_en, visible, created_date)
+VALUES
+    (1, 'Asosiy', 'Главное', 'Main', TRUE, CURRENT_TIMESTAMP),
+    (2, 'Muharrir tanlovi', 'Выбор редакции', 'Editor''s Choice', TRUE, CURRENT_TIMESTAMP),
+    (3, 'Dolzarb', 'Актуальное', 'Topical', TRUE, CURRENT_TIMESTAMP),
+    (4, 'Maqola', 'Статья', 'Article', TRUE, CURRENT_TIMESTAMP),
+    (5, 'Foto yangilik', 'Фотоновости', 'Photo News', TRUE, CURRENT_TIMESTAMP),
+    (6, 'Intervyu', 'Интервью', 'Interview', TRUE, CURRENT_TIMESTAMP),
+    (7, 'Biznes', 'Бизнес', 'Business', TRUE, CURRENT_TIMESTAMP),
+    (8, 'Surishtiruv', 'Расследование', 'Investigation', TRUE, CURRENT_TIMESTAMP),
+    (9, 'Video yangilik', 'Видеоновости', 'Video News', TRUE, CURRENT_TIMESTAMP);

@@ -24,6 +24,8 @@ public interface ProfileRepository extends JpaRepository<ProfileEntity, Integer>
     @Query("select p from ProfileEntity p where p.email = :email")
     Optional<ProfileEntity> findByEmail(@Param("email") String email);
 
+    Optional<ProfileEntity> findByPhone(String phone);
+
     //FindByStatus
     @Query("select p from ProfileEntity p where p.status = :status")
     List<ProfileEntity> findByStatus(@Param("status") ProfileStatus status);
@@ -50,4 +52,16 @@ public interface ProfileRepository extends JpaRepository<ProfileEntity, Integer>
     //Paging by Status
     @Query("select p from ProfileEntity p where p.status = :status")
     Page<ProfileEntity> findByStatus(@Param("status") ProfileStatus status, Pageable pageable);
+
+    @Query("select p from ProfileEntity p where " +
+            "(:name is null or lower(p.name) like lower(concat('%', :name, '%'))) and " +
+            "(:surname is null or lower(p.surname) like lower(concat('%', :surname, '%'))) and " +
+            "(:phone is null or p.phone like concat('%', :phone, '%')) and " +
+            "(:role is null or p.role = :role) and " +
+            "(cast(:from as localdatetime) is null or p.createdDate >= :from) and " +
+            "(cast(:to as localdatetime) is null or p.createdDate <= :to)")
+    Page<ProfileEntity> filter(@Param("name") String name, @Param("surname") String surname,
+                               @Param("phone") String phone, @Param("role") ProfileRole role,
+                               @Param("from") LocalDateTime from, @Param("to") LocalDateTime to,
+                               Pageable pageable);
 }

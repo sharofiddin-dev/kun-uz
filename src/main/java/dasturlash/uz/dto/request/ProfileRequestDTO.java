@@ -6,6 +6,8 @@ import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 public class ProfileRequestDTO {
@@ -32,4 +34,9 @@ public class ProfileRequestDTO {
             message = "Password must contain uppercase, lowercase and digit"
     )
     private String password;
+
+    private ProfileStatus status;
+    private ProfileRole role;
+    private Boolean visible;
+    private UUID photoId;
 }

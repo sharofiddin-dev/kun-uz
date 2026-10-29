@@ -1,9 +1,9 @@
 package dasturlash.uz.entity;
 
-import dasturlash.uz.enums.Language;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -20,16 +20,13 @@ public class ArticleTypeEntity {
     private Integer orderNumber;
 
     @Column(name = "name_uz", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Language nameUz;
+    private String nameUz;
 
     @Column(name = "name_ru", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Language nameRu;
+    private String nameRu;
 
     @Column(name = "name_en", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Language nameEn;
+    private String nameEn;
 
     @Column(name = "visible")
     private Boolean visible;
