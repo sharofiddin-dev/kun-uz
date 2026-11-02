@@ -1,0 +1,52 @@
+### Create Section
+POST localhost:8080/api/section/create
+Content-Type: application/json
+
+{
+  "orderNumber": 2,
+  "nameUz": "Asosiy 4",
+  "nameRu": "Основной 4",
+  "nameEn": "Main 4",
+  "sectionKey": "3"
+}
+
+### GET Section All
+GET localhost:8080/api/section/get
+
+### GET BY ID
+GET localhost:8080/api/section/get/by-id/4
+
+### DELETE Section By id
+DELETE localhost:8080/api/section/delete/3
+
+### UPDATE Section By id
+PUT localhost:8080/api/section/update/2
+Content-Type: application/json
+
+{
+  "orderNumber": 2,
+  "nameUz": "Asosiy 4",
+  "nameRu": "Основной 4",
+  "nameEn": "Main 4",
+  "sectionKey": "8"
+}
+
+### GET BY ORDER NUMBER
+GET localhost:8080/api/section/get/by-order-number/3
+
+### PAGINATION
+GET localhost:8080/api/section/paging?page=1&size=10
+
+
+### FILTER
+POST localhost:8080/api/section/filter?page=1&size=10
+Content-Type: application/json
+
+{
+  "createdDateFrom": "2026-10-30T20:24:41",
+  "createdDateTo": "2026-11-01T16:45:24"
+}
+
+### GET SECTION BY LANGUAGE
+GET localhost:8080/api/section/lang
+Accept-Language: EN

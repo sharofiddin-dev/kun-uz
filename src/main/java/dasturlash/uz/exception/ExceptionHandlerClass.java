@@ -86,6 +86,15 @@ public class ExceptionHandlerClass extends ResponseEntityExceptionHandler {
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
+    @ExceptionHandler(AppBadException.class)
+    public ResponseEntity<Object> handleAppBadException(AppBadException ex) {
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("timestamp", new Date());
+        body.put("status", HttpStatus.BAD_REQUEST.value());
+        body.put("error", ex.getMessage());
+        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+    }
+
     @Override
     protected ResponseEntity<Object> handleTypeMismatch(TypeMismatchException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         Map<String, Object> body = new LinkedHashMap<>();

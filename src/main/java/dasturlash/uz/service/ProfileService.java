@@ -1,10 +1,12 @@
 package dasturlash.uz.service;
 
 import dasturlash.uz.dto.request.ProfileRequestDTO;
+import dasturlash.uz.dto.request.ProfileUpdatePasswordDTO;
 import dasturlash.uz.dto.response.ProfileResponseDTO;
 import dasturlash.uz.entity.ProfileEntity;
 import dasturlash.uz.enums.ProfileRole;
 import dasturlash.uz.enums.ProfileStatus;
+import dasturlash.uz.exception.AppBadException;
 import dasturlash.uz.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,11 +14,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+
+import static java.lang.reflect.Array.get;
 
 @Service
 public class ProfileService {
@@ -24,8 +29,17 @@ public class ProfileService {
     @Autowired
     private ProfileRepository repository;
 
-    public ProfileResponseDTO create(ProfileRequestDTO dto) {
-        ProfileEntity entity = toEntity(dto, new ProfileEntity());
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public ProfileResponseDTO create(ProfileRequestDTO profile) {
+        Optional<ProfileEntity> optional = repository.findByPhoneAndVisibleIsTrue(profile.getPhone());
+        if(optional.isPresent()) {
+            throw new AppBadException("User already exists");
+        }
+
+        ProfileEntity entity = toEntity(profile, new ProfileEntity());
+        entity.setPassword(bCryptPasswordEncoder.encode(profile.getPassword()));
         entity.setRole(ProfileRole.ROLE_USER);
         entity.setStatus(ProfileStatus.ACTIVE);
         entity.setVisible(Boolean.TRUE);
@@ -48,13 +62,16 @@ public class ProfileService {
     }
 
 
+
     // =====================================================
     public List<ProfileResponseDTO> getAll() {
         return toList(repository.findAll());
     }
 
     // =====================================================
+
     public ProfileResponseDTO getById(Integer id) {
+        repository.findById(id).orElseThrow(() -> new AppBadException("Profile Not Found"));
         return toDTO(getEntity(id));
     }
 
@@ -83,6 +100,27 @@ public class ProfileService {
         ProfileEntity entity = getEntity(id);
         toEntity(dto, entity);
         repository.save(entity);
+        return true;
+    }
+
+    // =====================================================
+    public Boolean updatePassword(Integer id, ProfileUpdatePasswordDTO dto) {
+
+        ProfileEntity profile = repository.findById(id)
+                .orElseThrow(() -> new AppBadException("Profile not found"));
+
+        if (!bCryptPasswordEncoder.matches(
+                dto.getCurrentPassword(),
+                profile.getPassword())) {
+            throw new AppBadException("Wrong password");
+        }
+
+        profile.setPassword(
+                bCryptPasswordEncoder.encode(dto.getNewPassword())
+        );
+
+        repository.save(profile);
+
         return true;
     }
 

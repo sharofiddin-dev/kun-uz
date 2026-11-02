@@ -3,6 +3,8 @@ package dasturlash.uz.repository;
 import dasturlash.uz.entity.ProfileEntity;
 import dasturlash.uz.enums.ProfileRole;
 import dasturlash.uz.enums.ProfileStatus;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -53,6 +55,7 @@ public interface ProfileRepository extends JpaRepository<ProfileEntity, Integer>
     @Query("select p from ProfileEntity p where p.status = :status")
     Page<ProfileEntity> findByStatus(@Param("status") ProfileStatus status, Pageable pageable);
 
+    //Filter
     @Query("select p from ProfileEntity p where " +
             "(:name is null or lower(p.name) like lower(concat('%', :name, '%'))) and " +
             "(:surname is null or lower(p.surname) like lower(concat('%', :surname, '%'))) and " +
@@ -64,4 +67,6 @@ public interface ProfileRepository extends JpaRepository<ProfileEntity, Integer>
                                @Param("phone") String phone, @Param("role") ProfileRole role,
                                @Param("from") LocalDateTime from, @Param("to") LocalDateTime to,
                                Pageable pageable);
+
+    Optional<ProfileEntity> findByPhoneAndVisibleIsTrue(@NotBlank(message = "Phone is required") @Pattern(regexp = "^\\+998[0-9]{9}$", message = "Phone format is invalid") String phone);
 }
