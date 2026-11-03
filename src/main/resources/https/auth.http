@@ -1,0 +1,39 @@
+### 1. Registration
+POST http://localhost:8080/api/v1/auth/registration
+Content-Type: application/json
+
+{
+  "name": "Begzod",
+  "surname": "Axmadov",
+  "username": "begzod",
+  "password": "Strong555"
+}
+
+### 2. Login
+POST http://localhost:8080/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "username": "begzod",
+  "password": "Strong555"
+}
+
+### 3. Registration — validation xatosi (bo'sh maydonlar)
+POST http://localhost:8080/api/v1/auth/registration
+Content-Type: application/json
+
+{
+  "name": "",
+  "surname": "",
+  "username": "",
+  "password": ""
+}
+
+### 4. Login — validation xatosi (bo'sh maydonlar)
+POST http://localhost:8080/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "username": "",
+  "password": ""
+}

@@ -69,4 +69,6 @@ public interface ProfileRepository extends JpaRepository<ProfileEntity, Integer>
                                Pageable pageable);
 
     Optional<ProfileEntity> findByPhoneAndVisibleIsTrue(@NotBlank(message = "Phone is required") @Pattern(regexp = "^\\+998[0-9]{9}$", message = "Phone format is invalid") String phone);
+
+    Optional<ProfileEntity> findByUsernameAndVisibleIsTrue(@NotBlank(message = "Username required") String username);
 }

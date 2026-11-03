@@ -1,0 +1,51 @@
+### Create Region
+POST localhost:8080/api/region/create
+Content-Type: application/json
+
+{
+  "orderNumber": 1,
+  "nameUz": "Toshkent",
+  "nameRu": "Ташкент",
+  "nameEn": "Tashkent",
+  "regionKey": "toshkent"
+}
+
+### GET Region All
+GET localhost:8080/api/region/get
+
+### GET BY ID
+GET localhost:8080/api/region/get/by-id/1
+
+### UPDATE Region By id
+PUT localhost:8080/api/region/update/1
+Content-Type: application/json
+
+{
+  "orderNumber": 2,
+  "nameUz": "Toshkent shahri",
+  "nameRu": "Город Ташкент",
+  "nameEn": "Tashkent city",
+  "regionKey": "toshkent"
+}
+
+### DELETE Region By id
+DELETE localhost:8080/api/region/delete/1
+
+### PAGINATION
+GET localhost:8080/api/region/paging?page=1&size=10
+
+### FILTER
+POST localhost:8080/api/region/filter?page=1&size=10
+Content-Type: application/json
+
+{
+  "orderNumber": 1,
+  "regionKey": "toshkent",
+  "nameUz": "tosh",
+  "createdDateFrom": "2026-10-30T20:24:41",
+  "createdDateTo": "2026-11-01T16:45:24"
+}
+
+### GET REGION BY LANGUAGE
+GET localhost:8080/api/region/lang
+Accept-Language: RU

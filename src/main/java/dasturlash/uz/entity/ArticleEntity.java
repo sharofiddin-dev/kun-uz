@@ -1,3 +1,4 @@
+
 package dasturlash.uz.entity;
 
 import dasturlash.uz.enums.ArticleStatus;
@@ -15,6 +16,7 @@ import java.util.UUID;
 @Getter
 @Setter
 public class ArticleEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -29,27 +31,26 @@ public class ArticleEntity {
     private String content;
 
     @Column(name = "shared_count", nullable = false)
-    private Long sharedCount;
+    private Long sharedCount = 0L;
 
     @Column(name = "view_count", nullable = false)
-    private Long viewCount;
+    private Long viewCount = 0L;
 
     @Column(name = "image_id")
-    private UUID imageId;
+    private String imageId;
 
-    @ManyToOne(optional = false)
+    @Column(name = "read_time")
+    private Integer readTime;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "region_id")
     private RegionEntity region;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "category_id")
-    private CategoryEntity category;
-
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "moderator_id")
     private ProfileEntity moderator;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "publisher_id")
     private ProfileEntity publisher;
 
@@ -64,6 +65,11 @@ public class ArticleEntity {
     private LocalDateTime publishedDate;
 
     @Column(nullable = false)
-    private Boolean visible;
+    private Boolean visible = true;
 
+    @OneToMany(mappedBy = "article", fetch = FetchType.LAZY)
+    private Set<ArticleCategoryEntity> articleCategories = new HashSet<>();
+
+    @OneToMany(mappedBy = "article", fetch = FetchType.LAZY)
+    private Set<ArticleSectionEntity> articleSections = new HashSet<>();
 }

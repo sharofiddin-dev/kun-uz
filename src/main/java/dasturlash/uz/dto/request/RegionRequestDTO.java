@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 public class RegionRequestDTO {
     @NotNull(message = "Order number is required")
-    @Min(1)
+    @Min(value = 1, message = "OrderNumber has to be greater than 0")
     private Integer orderNumber;
 
     @NotBlank(message = "Uzbek name is required")
@@ -21,4 +21,7 @@ public class RegionRequestDTO {
 
     @NotBlank(message = "English name is required")
     private String nameEn;
+
+    @NotBlank(message = "Region key is required")
+    private String regionKey;
 }

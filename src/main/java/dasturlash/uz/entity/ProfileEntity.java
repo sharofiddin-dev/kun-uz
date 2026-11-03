@@ -3,6 +3,7 @@ package dasturlash.uz.entity;
 import dasturlash.uz.enums.ProfileRole;
 import dasturlash.uz.enums.ProfileStatus;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,6 +33,9 @@ public class ProfileEntity {
 
     @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
+    private String username;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
