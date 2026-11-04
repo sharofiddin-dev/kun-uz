@@ -1,4 +1,4 @@
-package dasturlash.uz.dto.response;
+package dasturlash.uz.dto.auth;
 
 import lombok.Getter;
 import lombok.Setter;
