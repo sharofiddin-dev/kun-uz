@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -48,17 +49,18 @@ public class AuthService {
         profile.setPassword(bCryptPasswordEncoder.encode(dto.getPassword()));
         profile.setVisible(true);
         profile.setStatus(ProfileStatus.NOT_ACTIVE);
+        profile.setRole(ProfileRole.ROLE_USER);
+        profile.setCreatedDate(LocalDateTime.now());
         profileRepository.save(profile);
         // create profile roles
         profileRoleService.create(profile.getId(), ProfileRole.ROLE_USER);
-        // send sms to amail or phone
-        MessageDTO messageDTO = new MessageDTO();
-        messageDTO.setToAccount(dto.getUsername());
-        messageDTO.setSubject("Ro'yhatdan o'tish");
-        messageDTO.setText("12345"); //Bu yerda randomniy keladigan code generation qilish kerak
-        emailSendingService.sendSimpleMessage(messageDTO);
+        //Random code
+        String code = CodeGenerator.generateNumericCode();
+        // send code to email
+        emailSendingService.sendMimeMessage(dto.getUsername(), "Kun.uz - Email tasdiqlash", code);
         // response
         return "Tastiqlash kodi ketdi mazgi qara.";
+
     }
 
     public ProfileResponseDTO login(AuthorizationDTO dto) {

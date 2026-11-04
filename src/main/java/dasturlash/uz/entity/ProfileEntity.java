@@ -25,10 +25,10 @@ public class ProfileEntity {
     @Column(nullable = false, length = 30)
     private String surname;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String email;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String phone;
 
     @Column(nullable = false)

@@ -3,10 +3,10 @@ POST http://localhost:8080/api/v1/auth/registration
 Content-Type: application/json
 
 {
-  "name": "Begzod",
-  "surname": "Axmadov",
-  "username": "begzod",
-  "password": "Strong555"
+  "name": "Sharofiddin",
+  "surname": "Makhamadjonov",
+  "username": "go.away0615@gmail.com",
+  "password": "123"
 }
 
 ### 2. Login
