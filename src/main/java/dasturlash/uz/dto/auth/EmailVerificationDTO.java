@@ -1,4 +1,4 @@
-package dasturlash.uz.dto.response;
+package dasturlash.uz.dto.auth;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

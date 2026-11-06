@@ -1,6 +1,6 @@
 package dasturlash.uz.service;
 
-import dasturlash.uz.dto.response.MessageDTO;
+import dasturlash.uz.dto.auth.MessageDTO;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class EmailSendingService {
     }
 
     public String sendMimeMessage(String toAccount, String title, String code) {
-        String text = String.format("<!DOCTYPE html>\n" +
+        String text = "<!DOCTYPE html>\n" +
                 "<html lang=\"uz\">\n" +
                 "<head>\n" +
                 "    <meta charset=\"UTF-8\">\n" +
@@ -41,13 +41,13 @@ public class EmailSendingService {
                 "\n" +
                 "<body style=\"margin:0; padding:0; background-color:#f4f6f8; font-family:Arial, Helvetica, sans-serif;\">\n" +
                 "\n" +
-                "<table width=\"100%%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"\n" +
+                "<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"\n" +
                 "       style=\"background-color:#f4f6f8; padding:40px 15px;\">\n" +
                 "\n" +
                 "    <tr>\n" +
                 "        <td align=\"center\">\n" +
                 "\n" +
-                "            <table width=\"100%%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"\n" +
+                "            <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"\n" +
                 "                   style=\"max-width:500px; background-color:#ffffff; border-radius:12px; overflow:hidden;\">\n" +
                 "\n" +
                 "                <!-- Header -->\n" +
@@ -56,7 +56,7 @@ public class EmailSendingService {
                 "                        style=\"background-color:#1029c8; padding:25px;\">\n" +
                 "\n" +
                 "                        <h1 style=\"margin:0; color:#ffffff; font-size:28px; font-weight:bold;\">\n" +
-                "                            KUN.UZ\n" +
+                "                            KUN UZ\n" +
                 "                        </h1>\n" +
                 "\n" +
                 "                        <p style=\"margin:8px 0 0; color:#ffffff; font-size:13px;\">\n" +
@@ -82,7 +82,7 @@ public class EmailSendingService {
                 "                        </p>\n" +
                 "\n" +
                 "                        <!-- Verification Code -->\n" +
-                "                        <table width=\"100%%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n" +
+                "                        <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n" +
                 "                            <tr>\n" +
                 "                                <td align=\"center\"\n" +
                 "                                    style=\"background-color:#f4f6f8; border:1px dashed #1029c8;\n" +
@@ -94,7 +94,7 @@ public class EmailSendingService {
                 "\n" +
                 "                                    <h1 style=\"margin:0; color:#1029c8;\n" +
                 "                                               font-size:36px; letter-spacing:10px;\">\n" +
-                "                                        %s\n" +
+                "                                        {{CODE}}\n" +
                 "                                    </h1>\n" +
                 "\n" +
                 "                                </td>\n" +
@@ -102,7 +102,7 @@ public class EmailSendingService {
                 "                        </table>\n" +
                 "\n" +
                 "                        <p style=\"margin:25px 0 10px; color:#555555; font-size:14px; line-height:1.6;\">\n" +
-                "                            Ushbu kod <strong>5 daqiqa</strong> davomida amal qiladi.\n" +
+                "                            Ushbu kod <strong>2 daqiqa</strong> davomida amal qiladi.\n" +
                 "                            Iltimos, kodni hech kimga bermang.\n" +
                 "                        </p>\n" +
                 "\n" +
@@ -139,7 +139,8 @@ public class EmailSendingService {
                 "</table>\n" +
                 "\n" +
                 "</body>\n" +
-                "</html>\n", code);
+                "</html>\n";
+                text = text.replace("{{CODE}}", code);
 
         try {
             MimeMessage msg = javaMailSender.createMimeMessage();
@@ -156,7 +157,5 @@ public class EmailSendingService {
 
         return "Mail was send";
     }
-//
-//    public void sendMimeMessage(MessageDTO messageDTO) {
-//    }
+
 }

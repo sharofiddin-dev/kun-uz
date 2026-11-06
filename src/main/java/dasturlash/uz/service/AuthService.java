@@ -2,7 +2,6 @@ package dasturlash.uz.service;
 
 import dasturlash.uz.dto.auth.AuthorizationDTO;
 import dasturlash.uz.dto.auth.RegistrationDTO;
-import dasturlash.uz.dto.response.MessageDTO;
 import dasturlash.uz.dto.response.ProfileResponseDTO;
 import dasturlash.uz.entity.ProfileEntity;
 import dasturlash.uz.enums.ProfileRole;
@@ -26,6 +25,8 @@ public class AuthService {
     private ProfileRoleService profileRoleService;
     @Autowired
     private EmailSendingService emailSendingService;
+    @Autowired
+    private EmailVerificationService emailVerificationService;
 
     public String registration(RegistrationDTO dto) {
         // check
@@ -54,8 +55,10 @@ public class AuthService {
         profileRepository.save(profile);
         // create profile roles
         profileRoleService.create(profile.getId(), ProfileRole.ROLE_USER);
-        //Random code
+        // Random code
         String code = CodeGenerator.generateNumericCode();
+        // Database ga code ni saqlash
+        emailVerificationService.saveVerificationCode(profile.getId(), code);
         // send code to email
         emailSendingService.sendMimeMessage(dto.getUsername(), "Kun.uz - Email tasdiqlash", code);
         // response
@@ -83,7 +86,6 @@ public class AuthService {
         response.setRoleList(profileRoleService.getByProfileId(entity.getId()));
         return response;
     }
-
 
 }
 
